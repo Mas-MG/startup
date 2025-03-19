@@ -5,16 +5,16 @@ import Link from "next/link";
 
 const SearchFormReset = () => {
   const reset = () => {
-    const fromInput = document.querySelector(
-      ".search-input"
-    ) as HTMLInputElement;
+    // const fromInput = document.querySelector(
+    //   ".search-input"
+    // ) as HTMLInputElement;
     const form = document.querySelector("search-form") as HTMLFormElement;
     if (form) {
       form.reset();
     }
-    if (fromInput) {
-      fromInput.value = "";
-    }
+    // if (fromInput) {
+    //   fromInput.value = "";
+    // }
   };
 
   return (
