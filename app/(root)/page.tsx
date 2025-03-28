@@ -1,5 +1,8 @@
-import StartupCard, { PostType } from "@/components/StartupCard";
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+
 
 export default async function Home( {
   searchParams,
@@ -9,17 +12,8 @@ export default async function Home( {
   const params = await searchParams; 
   const query = params.query;
 
-
-  const posts:PostType[]=[{
-    _createdAt:new Date(),
-    views:55,
-    author:{_id:1,name:'Masoomeh'},
-    _id:1,
-    description:"This is a decription",
-    image:"IC1EXIMymw35JeZPi27Z6Wb6LIv59juvr01z76QZ.jpg",
-    category:"Cars",
-    title:"We Cars"
-  }] 
+  const posts=await client.fetch(STARTUPS_QUERY);
+  console.log(posts)
 
   return (
     <>
@@ -39,10 +33,10 @@ export default async function Home( {
       </p>
       <ul className="card_grid mt-7">
       {posts?.length > 0 ?
-      posts?.map((post:PostType)=>(
+      posts.map((post:StartupTypeCard)=>(
            <StartupCard key={post?._id} post={post}/>
       )):
-      (
+      ( 
         <p className="no-result">No startups found</p>
       )
       }
