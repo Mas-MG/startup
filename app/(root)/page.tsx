@@ -9,11 +9,11 @@ export default async function Home({
 }: {
   searchParams: Promise<{ query?: string }>;
 }) {
-  const params = await searchParams;
-  const query = params.query;
+  const query = (await searchParams)?.query;
+  const params = { search: query || null };
 
   // const posts=await client.fetch(STARTUPS_QUERY);
-  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY });
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY,params });
 
   return (
     <>
