@@ -172,8 +172,28 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: STARTUPS_QUERY
-// Query: *[_type=="startup" && defined(slug.current)] | order(_createdAt desc){    _id,    title,    slug,    image,    views,    description,    category,    _createdAt,    author -> {      _id,      name,      image,      bio    }}
+// Query: *[_type=="startup" && defined(slug.current) && !defined($search) || title match $search || author->name match $search || category match $search] | order(_createdAt desc){    _id,    title,    slug,    image,    views,    description,    category,    _createdAt,    author -> {      _id,      name,      image,      bio    }}
 // export type STARTUPS_QUERYResult = Array<{
+//   _id: string;
+//   title: null;
+//   slug: null;
+//   image: string | null;
+//   views: null;
+//   description: null;
+//   category: null;
+//   _createdAt: string;
+//   author: null;
+// } | {
+//   _id: string;
+//   title: string | null;
+//   slug: null;
+//   image: null;
+//   views: null;
+//   description: string | null;
+//   category: null;
+//   _createdAt: string;
+//   author: null;
+// } | {
 //   _id: string;
 //   title: string | null;
 //   slug: Slug | null;
@@ -190,10 +210,10 @@ export declare const internalGroqTypeReferenceTo: unique symbol;
 //   } | null;
 // }>;
 
-// Query TypeMap
+// // Query TypeMap
 // import "@sanity/client";
 // declare module "@sanity/client" {
 //   interface SanityQueries {
-//     "*[_type==\"startup\" && defined(slug.current)] | order(_createdAt desc){\n    _id,\n    title,\n    slug,\n    image,\n    views,\n    description,\n    category,\n    _createdAt,\n    author -> {\n      _id,\n      name,\n      image,\n      bio\n    }\n}": STARTUPS_QUERYResult;
+//     "*[_type==\"startup\" && defined(slug.current) && !defined($search) || title match $search || author->name match $search || category match $search] | order(_createdAt desc){\n    _id,\n    title,\n    slug,\n    image,\n    views,\n    description,\n    category,\n    _createdAt,\n    author -> {\n      _id,\n      name,\n      image,\n      bio\n    }\n}": STARTUPS_QUERYResult;
 //   }
 // }
